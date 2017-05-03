@@ -154,7 +154,7 @@ window.onload = function () {
 
     var attributionHTML = document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML;
     var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using';
-    attributionHTML = mapCreatorAttribution + attributionHTML;
+    attributionHTML = mapCreatorAttribution + '<a href="http://mapsfor.us/">mapsfor.us</a><br>' attributionHTML;
     document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML = attributionHTML;
   }
 };
