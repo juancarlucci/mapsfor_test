@@ -153,8 +153,8 @@ window.onload = function () {
     }).addTo(map);
 
     var attributionHTML = document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML;
-    var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using mapsforus';
-    attributionHTML = mapCreatorAttribution + ' <a href="https://www.projectpetals.org/">Project Petals</a>' + ' ' + attributionHTML;
+    var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using'<a href="http://mapsfor.us/">Mapsfor.us</a>;
+    attributionHTML = mapCreatorAttribution + ' <a href="https://www.projectpetals.org/">Project Petals</a>' + ' ' + attributionHTML+ 'Map by';
     document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML = attributionHTML;
   }
 };
