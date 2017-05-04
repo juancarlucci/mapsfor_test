@@ -147,7 +147,7 @@ window.onload = function () {
   function initInfoPopup(info, coordinates) {
     L.popup({className: 'intro-popup'})
       .setLatLng(coordinates) // this needs to change
-      .setContent("Weclome to Project Petals<br/><img id='logo' src='images/PP.png' alt='Project Petals logo png' width='50px'/>")
+      .setContent(documentSettings["Info Popup Text:"] + "<br/><img id='logo' src='images/PP.png' alt='Project Petals logo png' width='50px'/>")
       .openOn(map);
       
   }
