@@ -72,7 +72,7 @@ window.onload = function () {
       if (point.Latitude !== "" && point.Longitude !== "") {
         var marker = L.marker([point.Latitude, point.Longitude], {
           icon: createMarkerIcon(point['Marker Icon'], 'fa', point['Marker Color'].toLowerCase(), point['Marker Icon Color'])
-        }).bindPopup("<b>" + point["Title"] + "</b><br>" + point["Description"]);
+        }).bindPopup("<b>" + point["Title"] + "</b><br>" + point["Description"] + "<br>" + point["Layer"]);
         if (layers !== undefined && layers.length !== 1) {
           marker.addTo(layers[point.Layer]);
         }
@@ -121,6 +121,16 @@ window.onload = function () {
     }
   }
 
+   /**
+   * Returns the value of a setting s
+   * getSetting(s) is equivalent to documentSettings[constants.s]
+   */
+  function getSetting(s) {
+    return documentSettings[constants[s]];
+
+  }
+
+
   function onTabletopLoad() {
     createDocumentSettings(tabletop.sheets(constants.informationSheetName).elements);
     addBaseMap();
@@ -137,8 +147,9 @@ window.onload = function () {
   function initInfoPopup(info, coordinates) {
     L.popup({className: 'intro-popup'})
       .setLatLng(coordinates) // this needs to change
-      .setContent(info)
+      .setContent("Weclome to Project Petals<br/><img id='logo' src='images/PP.png' alt='Project Petals logo png' width='50px'/>")
       .openOn(map);
+      
   }
   
   function addBaseMap() {
