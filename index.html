@@ -2,11 +2,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=yes">
 <html>
-<head profile="http://www.w3.org/2005/10/profile">
-  <link rel="icon"
-    type="image/png"
-    href="http://mollietaylor.com/favicon.png">
-  <title>mapsfor.us</title>
+<head>
+  
+  <title>Map template</title>
+
+    <!-- jQuery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="plugins/leaflet/leaflet.css" />
@@ -35,6 +37,7 @@
 
   <style type="text/css">
     html, body{
+      font-family: helvetica;
       padding: 0;
       margin: 0 auto;
       height: 100%;
@@ -53,17 +56,47 @@
     .leaflet-control-layers-expanded {
       color: #fff;
       background: #fbcc02;
-    }   
+    }
+    .leaflet-popup-content-wrapper   {
+      color: #FFF;
+      background: #89c63b;
+
+    }
+    #circularTitle {
+      color: #fff;
+      border-radius: 100px;
+      width: 200px;
+      height: 200px;
+      background-color: #89c63b;
+      text-align: center;
+      margin: 20px;
+      font-size: .75em;
+      display: table-cell;
+      top: 250px;
+      position: absolute;
+      z-index: 1000;
+    }
+    #circularTitle h1 {
+      padding: 55px 0px 0px 0px;
+    }
+    #logo {
+       border-radius: 100px;
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: 15px;
+       margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
-
+<!-- <div class="loader">Loading...</div> -->
 <div id="map"></div>
 
 <script type="text/javascript">
   var map = L.map('map', {
     attributionControl: false
-  }).setView([33.76,-84.365], 11);
+  }).setView([40.778893,-73.96233], 12);
 </script>
 <script type="text/javascript" src="constants.js"></script>
 <script type="text/javascript" src="map.js"></script>
