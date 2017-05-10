@@ -1,6 +1,7 @@
 window.onload = function () {
 
   var documentSettings = {};
+  var markerColors = [];
 
   function createMarkerIcon(icon, prefix, markerColor, iconColor) {
     return L.AwesomeMarkers.icon({
@@ -46,6 +47,12 @@ window.onload = function () {
     for (var i in points) {
       var pointLayerNameFromSpreadsheet = points[i].Layer;
       if (layerNamesFromSpreadsheet.indexOf(pointLayerNameFromSpreadsheet) === -1) {
+        markerColors.push(
+                 points[i]['Marker Icon'].indexOf('.') > 0
+                 ? points[i]['Marker Icon']
+                 : points[i]['Marker Color']
+               );
+
         layerNamesFromSpreadsheet.push(pointLayerNameFromSpreadsheet);
       }
     }
@@ -58,7 +65,9 @@ window.onload = function () {
         var layerNameFromSpreadsheet = layerNamesFromSpreadsheet[i];
         layers[layerNameFromSpreadsheet] = L.layerGroup();
         layers[layerNameFromSpreadsheet].addTo(map);
+
       }
+
     }
     return layers;
   }
@@ -66,6 +75,7 @@ window.onload = function () {
   // only run this after Tabletop has loaded (onTabletopLoad())
   function mapPoints(points, layers) {
     var markerArray = [];
+
     // check that map has loaded before adding points to it?
     for (var i in points) {
       var point = points[i];
@@ -90,8 +100,8 @@ window.onload = function () {
       }).addTo(map);
     }
     centerAndZoomMap(group);
-
   }
+
 
   // reformulate documentSettings as a dictionary, e.g.
   // {"webpageTitle": "Leaflet Boilerplate", "infoPopupText": "Stuff"}
@@ -156,7 +166,7 @@ window.onload = function () {
     var basemap = documentSettings["Tile Provider:"] === '' ? 'Stamen.TonerLite' : documentSettings["Tile Provider:"];
 
     L.tileLayer.provider(basemap, {
-      maxZoom: 18
+      maxZoom: 13
     }).addTo(map);
 
     L.control.attribution({
@@ -167,5 +177,12 @@ window.onload = function () {
     var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using ';
     attributionHTML = mapCreatorAttribution + '<a href="http://mapsfor.us/">mapsfor.us</a><br>' + attributionHTML;
     document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML = attributionHTML;
+    // When processing is done, hide loader and make map visible
+    showMap();
+  }
+
+  function showMap() {
+        $('#map').css('visibility', 'visible');
+        $('.loader').hide();
   }
 };
